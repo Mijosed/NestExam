@@ -8,15 +8,36 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
 model User {
-  id            String   @id @default(uuid())
-  email         String   @unique
-  username      String?  @unique
-  password      String
-  emailVerified    Boolean   @default(false)
-  emailToken       String?   @unique
-  twoFactorCode    String?
-  twoFactorExpiry  DateTime?
-  created          DateTime  @default(now())
-  updated          DateTime  @updatedAt
+  id              String    @id @default(uuid())
+  email           String    @unique
+  username        String?   @unique
+  password        String
+  role            Role      @default(USER)
+  emailVerified   Boolean   @default(false)
+  emailToken      String?   @unique
+  twoFactorCode   String?
+  twoFactorExpiry DateTime?
+  movies          Movie[]
+  created         DateTime  @default(now())
+  updated         DateTime  @updatedAt
+}
+
+model Movie {
+  id        String   @id @default(uuid())
+  title     String
+  genre     String?
+  year      Int?
+  rating    Int?
+  note      String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  watchedAt DateTime @default(now())
+  created   DateTime @default(now())
+  updated   DateTime @updatedAt
 }

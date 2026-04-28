@@ -8,7 +8,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 
 export type RequestWithUser = Request & {
-  user: { sub: string; email: string };
+  user: { sub: string; email: string; role: string };
 };
 
 @Injectable()

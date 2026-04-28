@@ -29,6 +29,7 @@ export type UserMinAggregateOutputType = {
   email: string | null
   username: string | null
   password: string | null
+  role: $Enums.Role | null
   emailVerified: boolean | null
   emailToken: string | null
   twoFactorCode: string | null
@@ -42,6 +43,7 @@ export type UserMaxAggregateOutputType = {
   email: string | null
   username: string | null
   password: string | null
+  role: $Enums.Role | null
   emailVerified: boolean | null
   emailToken: string | null
   twoFactorCode: string | null
@@ -55,6 +57,7 @@ export type UserCountAggregateOutputType = {
   email: number
   username: number
   password: number
+  role: number
   emailVerified: number
   emailToken: number
   twoFactorCode: number
@@ -70,6 +73,7 @@ export type UserMinAggregateInputType = {
   email?: true
   username?: true
   password?: true
+  role?: true
   emailVerified?: true
   emailToken?: true
   twoFactorCode?: true
@@ -83,6 +87,7 @@ export type UserMaxAggregateInputType = {
   email?: true
   username?: true
   password?: true
+  role?: true
   emailVerified?: true
   emailToken?: true
   twoFactorCode?: true
@@ -96,6 +101,7 @@ export type UserCountAggregateInputType = {
   email?: true
   username?: true
   password?: true
+  role?: true
   emailVerified?: true
   emailToken?: true
   twoFactorCode?: true
@@ -182,6 +188,7 @@ export type UserGroupByOutputType = {
   email: string
   username: string | null
   password: string
+  role: $Enums.Role
   emailVerified: boolean
   emailToken: string | null
   twoFactorCode: string | null
@@ -216,12 +223,14 @@ export type UserWhereInput = {
   email?: Prisma.StringFilter<"User"> | string
   username?: Prisma.StringNullableFilter<"User"> | string | null
   password?: Prisma.StringFilter<"User"> | string
+  role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   emailVerified?: Prisma.BoolFilter<"User"> | boolean
   emailToken?: Prisma.StringNullableFilter<"User"> | string | null
   twoFactorCode?: Prisma.StringNullableFilter<"User"> | string | null
   twoFactorExpiry?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   created?: Prisma.DateTimeFilter<"User"> | Date | string
   updated?: Prisma.DateTimeFilter<"User"> | Date | string
+  movies?: Prisma.MovieListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -229,12 +238,14 @@ export type UserOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   username?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrder
+  role?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   emailToken?: Prisma.SortOrderInput | Prisma.SortOrder
   twoFactorCode?: Prisma.SortOrderInput | Prisma.SortOrder
   twoFactorExpiry?: Prisma.SortOrderInput | Prisma.SortOrder
   created?: Prisma.SortOrder
   updated?: Prisma.SortOrder
+  movies?: Prisma.MovieOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -246,11 +257,13 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   password?: Prisma.StringFilter<"User"> | string
+  role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   emailVerified?: Prisma.BoolFilter<"User"> | boolean
   twoFactorCode?: Prisma.StringNullableFilter<"User"> | string | null
   twoFactorExpiry?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   created?: Prisma.DateTimeFilter<"User"> | Date | string
   updated?: Prisma.DateTimeFilter<"User"> | Date | string
+  movies?: Prisma.MovieListRelationFilter
 }, "id" | "email" | "username" | "emailToken">
 
 export type UserOrderByWithAggregationInput = {
@@ -258,6 +271,7 @@ export type UserOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   username?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrder
+  role?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   emailToken?: Prisma.SortOrderInput | Prisma.SortOrder
   twoFactorCode?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -277,6 +291,7 @@ export type UserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   username?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   password?: Prisma.StringWithAggregatesFilter<"User"> | string
+  role?: Prisma.EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
   emailVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   emailToken?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   twoFactorCode?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
@@ -290,12 +305,14 @@ export type UserCreateInput = {
   email: string
   username?: string | null
   password: string
+  role?: $Enums.Role
   emailVerified?: boolean
   emailToken?: string | null
   twoFactorCode?: string | null
   twoFactorExpiry?: Date | string | null
   created?: Date | string
   updated?: Date | string
+  movies?: Prisma.MovieCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -303,12 +320,14 @@ export type UserUncheckedCreateInput = {
   email: string
   username?: string | null
   password: string
+  role?: $Enums.Role
   emailVerified?: boolean
   emailToken?: string | null
   twoFactorCode?: string | null
   twoFactorExpiry?: Date | string | null
   created?: Date | string
   updated?: Date | string
+  movies?: Prisma.MovieUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -316,12 +335,14 @@ export type UserUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   emailToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   twoFactorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   twoFactorExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  movies?: Prisma.MovieUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -329,12 +350,14 @@ export type UserUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   emailToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   twoFactorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   twoFactorExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  movies?: Prisma.MovieUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -342,6 +365,7 @@ export type UserCreateManyInput = {
   email: string
   username?: string | null
   password: string
+  role?: $Enums.Role
   emailVerified?: boolean
   emailToken?: string | null
   twoFactorCode?: string | null
@@ -355,6 +379,7 @@ export type UserUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   emailToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   twoFactorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -368,6 +393,7 @@ export type UserUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   emailToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   twoFactorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -381,6 +407,7 @@ export type UserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   username?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  role?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   emailToken?: Prisma.SortOrder
   twoFactorCode?: Prisma.SortOrder
@@ -394,6 +421,7 @@ export type UserMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   username?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  role?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   emailToken?: Prisma.SortOrder
   twoFactorCode?: Prisma.SortOrder
@@ -407,6 +435,7 @@ export type UserMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   username?: Prisma.SortOrder
   password?: Prisma.SortOrder
+  role?: Prisma.SortOrder
   emailVerified?: Prisma.SortOrder
   emailToken?: Prisma.SortOrder
   twoFactorCode?: Prisma.SortOrder
@@ -415,12 +444,21 @@ export type UserMinOrderByAggregateInput = {
   updated?: Prisma.SortOrder
 }
 
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
+}
+
+export type EnumRoleFieldUpdateOperationsInput = {
+  set?: $Enums.Role
 }
 
 export type BoolFieldUpdateOperationsInput = {
@@ -435,6 +473,121 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
+export type UserCreateNestedOneWithoutMoviesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMoviesInput, Prisma.UserUncheckedCreateWithoutMoviesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMoviesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutMoviesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMoviesInput, Prisma.UserUncheckedCreateWithoutMoviesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMoviesInput
+  upsert?: Prisma.UserUpsertWithoutMoviesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMoviesInput, Prisma.UserUpdateWithoutMoviesInput>, Prisma.UserUncheckedUpdateWithoutMoviesInput>
+}
+
+export type UserCreateWithoutMoviesInput = {
+  id?: string
+  email: string
+  username?: string | null
+  password: string
+  role?: $Enums.Role
+  emailVerified?: boolean
+  emailToken?: string | null
+  twoFactorCode?: string | null
+  twoFactorExpiry?: Date | string | null
+  created?: Date | string
+  updated?: Date | string
+}
+
+export type UserUncheckedCreateWithoutMoviesInput = {
+  id?: string
+  email: string
+  username?: string | null
+  password: string
+  role?: $Enums.Role
+  emailVerified?: boolean
+  emailToken?: string | null
+  twoFactorCode?: string | null
+  twoFactorExpiry?: Date | string | null
+  created?: Date | string
+  updated?: Date | string
+}
+
+export type UserCreateOrConnectWithoutMoviesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMoviesInput, Prisma.UserUncheckedCreateWithoutMoviesInput>
+}
+
+export type UserUpsertWithoutMoviesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMoviesInput, Prisma.UserUncheckedUpdateWithoutMoviesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMoviesInput, Prisma.UserUncheckedCreateWithoutMoviesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMoviesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMoviesInput, Prisma.UserUncheckedUpdateWithoutMoviesInput>
+}
+
+export type UserUpdateWithoutMoviesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  twoFactorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  twoFactorExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UserUncheckedUpdateWithoutMoviesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  emailToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  twoFactorCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  twoFactorExpiry?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+
+/**
+ * Count Type UserCountOutputType
+ */
+
+export type UserCountOutputType = {
+  movies: number
+}
+
+export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  movies?: boolean | UserCountOutputTypeCountMoviesArgs
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserCountOutputType
+   */
+  select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMoviesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MovieWhereInput
+}
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -442,12 +595,15 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   username?: boolean
   password?: boolean
+  role?: boolean
   emailVerified?: boolean
   emailToken?: boolean
   twoFactorCode?: boolean
   twoFactorExpiry?: boolean
   created?: boolean
   updated?: boolean
+  movies?: boolean | Prisma.User$moviesArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -455,6 +611,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   username?: boolean
   password?: boolean
+  role?: boolean
   emailVerified?: boolean
   emailToken?: boolean
   twoFactorCode?: boolean
@@ -468,6 +625,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   username?: boolean
   password?: boolean
+  role?: boolean
   emailVerified?: boolean
   emailToken?: boolean
   twoFactorCode?: boolean
@@ -481,6 +639,7 @@ export type UserSelectScalar = {
   email?: boolean
   username?: boolean
   password?: boolean
+  role?: boolean
   emailVerified?: boolean
   emailToken?: boolean
   twoFactorCode?: boolean
@@ -489,16 +648,25 @@ export type UserSelectScalar = {
   updated?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "username" | "password" | "emailVerified" | "emailToken" | "twoFactorCode" | "twoFactorExpiry" | "created" | "updated", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "username" | "password" | "role" | "emailVerified" | "emailToken" | "twoFactorCode" | "twoFactorExpiry" | "created" | "updated", ExtArgs["result"]["user"]>
+export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  movies?: boolean | Prisma.User$moviesArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
-  objects: {}
+  objects: {
+    movies: Prisma.$MoviePayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     email: string
     username: string | null
     password: string
+    role: $Enums.Role
     emailVerified: boolean
     emailToken: string | null
     twoFactorCode: string | null
@@ -899,6 +1067,7 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  movies<T extends Prisma.User$moviesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$moviesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -932,6 +1101,7 @@ export interface UserFieldRefs {
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly username: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
+  readonly role: Prisma.FieldRef<"User", 'Role'>
   readonly emailVerified: Prisma.FieldRef<"User", 'Boolean'>
   readonly emailToken: Prisma.FieldRef<"User", 'String'>
   readonly twoFactorCode: Prisma.FieldRef<"User", 'String'>
@@ -955,6 +1125,10 @@ export type UserFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where: Prisma.UserWhereUniqueInput
@@ -973,6 +1147,10 @@ export type UserFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where: Prisma.UserWhereUniqueInput
@@ -990,6 +1168,10 @@ export type UserFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * Filter, which User to fetch.
    */
@@ -1039,6 +1221,10 @@ export type UserFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where?: Prisma.UserWhereInput
@@ -1086,6 +1272,10 @@ export type UserFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * Filter, which Users to fetch.
    */
@@ -1135,6 +1325,10 @@ export type UserCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * The data needed to create a User.
    */
   data: Prisma.XOR<Prisma.UserCreateInput, Prisma.UserUncheckedCreateInput>
@@ -1182,6 +1376,10 @@ export type UserUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * The data needed to update a User.
    */
@@ -1249,6 +1447,10 @@ export type UserUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * The filter to search for the User to update in case it exists.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1275,6 +1477,10 @@ export type UserDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter which User to delete.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1295,6 +1501,30 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * User.movies
+ */
+export type User$moviesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Movie
+   */
+  select?: Prisma.MovieSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Movie
+   */
+  omit?: Prisma.MovieOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MovieInclude<ExtArgs> | null
+  where?: Prisma.MovieWhereInput
+  orderBy?: Prisma.MovieOrderByWithRelationInput | Prisma.MovieOrderByWithRelationInput[]
+  cursor?: Prisma.MovieWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MovieScalarFieldEnum | Prisma.MovieScalarFieldEnum[]
+}
+
+/**
  * User without action
  */
 export type UserDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1306,4 +1536,8 @@ export type UserDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
 }

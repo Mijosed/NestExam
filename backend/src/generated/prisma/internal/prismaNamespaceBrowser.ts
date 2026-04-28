@@ -51,7 +51,8 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  User: 'User',
+  Movie: 'Movie'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -75,6 +76,7 @@ export const UserScalarFieldEnum = {
   email: 'email',
   username: 'username',
   password: 'password',
+  role: 'role',
   emailVerified: 'emailVerified',
   emailToken: 'emailToken',
   twoFactorCode: 'twoFactorCode',
@@ -84,6 +86,22 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const MovieScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  genre: 'genre',
+  year: 'year',
+  rating: 'rating',
+  note: 'note',
+  userId: 'userId',
+  watchedAt: 'watchedAt',
+  created: 'created',
+  updated: 'updated'
+} as const
+
+export type MovieScalarFieldEnum = (typeof MovieScalarFieldEnum)[keyof typeof MovieScalarFieldEnum]
 
 
 export const SortOrder = {

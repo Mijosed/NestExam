@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
+import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
@@ -26,5 +27,11 @@ export class AuthController {
   @Post('verify-2fa')
   verifyTwoFactor(@Body() dto: VerifyTwoFactorDto) {
     return this.authService.verifyTwoFactor(dto);
+  }
+
+  @Post('logout')
+  @UseGuards(AuthGuard)
+  logout() {
+    return { message: 'Déconnecté avec succès' };
   }
 }
