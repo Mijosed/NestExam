@@ -18,11 +18,6 @@ Copie `.env.copy` en `.env` :
 cp .env.copy .env
 ```
 
-```env
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/mydb?schema=public"
-JWT_SECRET="change-this-secret"
-```
-
 Lance la base de données :
 
 ```bash
